@@ -1,4 +1,3 @@
-
 const app = new Vue({
     el:'#app',
     data:{
@@ -27,24 +26,46 @@ const app = new Vue({
                 image: 'img/05.jpg',
                 title: 'Paradise',
                 text: 'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis.',
+            },
+            {
+                image: 'img/05.jpg',
+                title: 'Paradise',
+                text: 'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis.',
             }
         ],
-        indexActive:0
+        indexActive:0,
+        intervallo:null
     },
     methods:{
         slidePrev(){
             if(this.indexActive === 0){
-                this.indexActive = 4;
+                this.indexActive = this.slides.length -1;
             }else{
                 this.indexActive -= 1
             }
         },
         slideNext(){
-            if(this.indexActive === 4){
+            if(this.indexActive === this.slides.length -1){
                this.indexActive = 0;
             }else{
                 this.indexActive += 1
             }
+        },
+        scroll(){
+            this.intervallo= setInterval(() => {
+                this.slideNext()
+            },2000)
+        },
+        stopScroll(){
+            clearInterval(this.intervallo);
+            this.intervallo = null;
+        },
+        select(index){
+            console.log(index)
+            this.indexActive = index
         }
+    },
+    mounted(){
+       this.scroll();
     }
 })
