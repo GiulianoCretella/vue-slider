@@ -33,9 +33,18 @@ const app = new Vue({
     },
     methods:{
         slidePrev(){
+            if(this.indexActive === 0){
+                this.indexActive = 4;
+            }else{
+                this.indexActive -= 1
+            }
         },
         slideNext(){
-            
+            if(this.indexActive === 4){
+               this.indexActive = 0;
+            }else{
+                this.indexActive += 1
+            }
         }
     }
 })
